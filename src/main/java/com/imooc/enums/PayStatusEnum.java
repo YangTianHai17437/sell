@@ -7,13 +7,13 @@ import lombok.Getter;
  *时间： 2019年12月04日
  */
 @Getter
-public enum PayStatusEnum {
-    WAIT(0,"等待支付"),
-    SUCCESS(1,"支付成功"),
+public enum PayStatusEnum implements CodeEnum {
+    WAIT(0, "等待支付"),
+    SUCCESS(1, "支付成功"),
 
     ;
     private Integer code;
-    private  String msg;
+    private String msg;
 
     PayStatusEnum(Integer code, String msg) {
         this.code = code;

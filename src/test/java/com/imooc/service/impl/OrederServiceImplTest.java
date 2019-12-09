@@ -39,8 +39,8 @@ public class OrederServiceImplTest {
     @Test
     public void crater() throws Exception {
         OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setBuyerName("廖师兄");
-        orderDTO.setBuyerAddress("幕课网");
+        orderDTO.setBuyerName("三师兄");
+        orderDTO.setBuyerAddress("西游记");
         orderDTO.setBuyerPhone("123456789012");
         orderDTO.setBuyerOpenid(BUYER_OPENID);
 
@@ -80,22 +80,29 @@ public class OrederServiceImplTest {
 
     @Test
     public void cancel() {
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        OrderDTO result=orderService.cancel(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),result.getOrderStatus());
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void finish() {
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        OrderDTO result=orderService.finish(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),result.getOrderStatus());
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void paid() {
-        OrderDTO orderDTO=orderService.findOne(ORDER_ID);
-        OrderDTO result=orderService.paid(orderDTO);
-        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+    }
+
+    @Test
+    public void list() {
+        PageRequest request = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(request);
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }
 }
